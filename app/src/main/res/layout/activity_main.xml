@@ -10,7 +10,7 @@
         android:id="@+id/turnText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Turn X!"
+        tools:text="Turn X!"
         android:textSize="40sp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,44 +32,82 @@
             style="@style/row">
 
             <Button
+                android:id="@+id/a1"
                 style="@style/column"
                 tools:text="X"/>
+
+            <View
+                style="@style/verticalLine"/>
+
             <Button
+                android:id="@+id/a2"
                 style="@style/column"
                 tools:text="X"/>
+
+            <View
+                style="@style/verticalLine"/>
+
             <Button
+                android:id="@+id/a3"
                 style="@style/column"
                 tools:text="X"/>
         </LinearLayout>
+
+        <View
+            style="@style/horizontalLine"/>
 
         <LinearLayout
             style="@style/row">
 
             <Button
+                android:id="@+id/b1"
                 style="@style/column"
                 tools:text="X"/>
+
+            <View
+                style="@style/verticalLine"/>
+
             <Button
+                android:id="@+id/b2"
                 style="@style/column"
                 tools:text="X"/>
+
+            <View
+                style="@style/verticalLine"/>
+
             <Button
+                android:id="@+id/b3"
                 style="@style/column"
                 tools:text="X"/>
         </LinearLayout>
+
+        <View
+            style="@style/horizontalLine"/>
 
         <LinearLayout
             style="@style/row">
 
             <Button
+                android:id="@+id/c1"
                 style="@style/column"
                 tools:text="X"/>
+
+            <View
+                style="@style/verticalLine"/>
+
             <Button
+                android:id="@+id/c2"
                 style="@style/column"
                 tools:text="X"/>
+
+            <View
+                style="@style/verticalLine"/>
+
             <Button
+                android:id="@+id/c3"
                 style="@style/column"
                 tools:text="X"/>
         </LinearLayout>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
