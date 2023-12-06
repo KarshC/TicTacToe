@@ -17,6 +17,10 @@ class MainActivity : AppCompatActivity() {
     private var firstTurn = Turn.CROSS
     private var currentTurn = Turn.CROSS
 
+    private var crossScore = 0
+    private var circleScore = 0
+
+
     private lateinit var binding: ActivityMainBinding
 
     private val boardList = mutableListOf<Button>()
@@ -39,11 +43,35 @@ class MainActivity : AppCompatActivity() {
         boardList.add(binding.c3)
     }
 
+    private fun checkForVictory(s: String): Boolean {
+        if(match(binding.a1, s) && match(binding.b1, s) && match(binding.c1,s))return true
+        if(match(binding.a2, s) && match(binding.b2, s) && match(binding.c2,s))return true
+        if(match(binding.a3, s) && match(binding.b3, s) && match(binding.c3,s))return true
+        if(match(binding.a1, s) && match(binding.a2, s) && match(binding.a3,s))return true
+        if(match(binding.b1, s) && match(binding.b2, s) && match(binding.b3,s))return true
+        if(match(binding.c1, s) && match(binding.c2, s) && match(binding.c3,s))return true
+        if(match(binding.a1, s) && match(binding.b2, s) && match(binding.c3,s))return true
+        if(match(binding.a3, s) && match(binding.b2, s) && match(binding.c1,s))return true
+        return false
+    }
+
+    private fun match(button: Button, symbol: String) = button.text == symbol
+
     fun boardClick(view: View) {
         if (view !is Button) {
             return
         }
         addToBoard(view)
+
+        if(checkForVictory(CROSS)){
+            crossScore++
+            result("Cross Wins!!!")
+        }
+
+        if(checkForVictory(CIRCLE)){
+            circleScore++
+            result("Circle Wins!!!")
+        }
 
         if (isFullBoard()) {
             result("Draw")
@@ -51,8 +79,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun result(title: String) {
+        val message = "\nCross Wins - $crossScore\n\nCircle Wins - $circleScore"
         AlertDialog.Builder(this)
             .setTitle(title)
+            .setMessage(message)
             .setPositiveButton("Reset") { _, _ ->
                 resetBoard()
             }
