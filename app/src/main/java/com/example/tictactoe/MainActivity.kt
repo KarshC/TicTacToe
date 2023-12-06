@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import com.example.tictactoe.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -43,6 +44,39 @@ class MainActivity : AppCompatActivity() {
             return
         }
         addToBoard(view)
+
+        if (isFullBoard()) {
+            result("Draw")
+        }
+    }
+
+    private fun result(title: String) {
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setPositiveButton("Reset") { _, _ ->
+                resetBoard()
+            }
+            .setCancelable(false)
+            .show()
+    }
+
+    private fun resetBoard() {
+        for (button in boardList) {
+            button.text = ""
+        }
+
+        if (firstTurn == Turn.CROSS) firstTurn =
+            Turn.CIRCLE else if (firstTurn == Turn.CIRCLE) firstTurn = Turn.CROSS
+
+        currentTurn = firstTurn
+        setTurnLabel()
+    }
+
+    private fun isFullBoard(): Boolean {
+        for (button in boardList) {
+            if (button.text == "") return false
+        }
+        return true
     }
 
     private fun addToBoard(button: Button) {
